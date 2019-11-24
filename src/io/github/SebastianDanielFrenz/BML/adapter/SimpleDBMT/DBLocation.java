@@ -1,36 +1,28 @@
-package io.github.SebastianDanielFrenz.BML.core.game;
+package io.github.SebastianDanielFrenz.BML.adapter.SimpleDBMT;
 
+import org.bukkit.Location;
+
+import io.github.SebastianDanielFrenz.BML.Utils;
 import io.github.SebastianDanielFrenz.SimpleDBMT.varTypes.DBCompareable;
 import io.github.SebastianDanielFrenz.SimpleDBMT.varTypes.DBvalue;
 
-public class PlacedBlock implements DBvalue {
-
-	public PlacedBlock(BMLBlock block) {
-		this.block = block;
-	}
-
-	private BMLBlock block;
-
-	public BMLBlock getBlock() {
-		return block;
-	}
+public class DBLocation implements DBvalue {
+	
+	private Location value;
 
 	@Override
 	public void Parse(String arg0) {
-		// TODO Auto-generated method stub
-
+		Utils.BlockLocationFromString(arg0);
 	}
 
 	@Override
 	public String Save() {
-		// TODO Auto-generated method stub
-		return null;
+		return Utils.
 	}
 
 	@Override
 	public boolean Equals(DBCompareable arg0) {
-		// TODO Auto-generated method stub
-		return false;
+		return 
 	}
 
 	@Override
