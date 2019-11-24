@@ -5,53 +5,20 @@ import io.github.SebastianDanielFrenz.SimpleDBMT.varTypes.DBvalue;
 
 public class PlacedBlock implements DBvalue {
 
-	public PlacedBlock(int x, int y, int z, Block type) {
-		setX(x);
-		setY(y);
-		setZ(z);
+	public PlacedBlock(BMLBlock block) {
+		this.block = block;
 	}
 
-	private int x;
-	private int y;
-	private int z;
-	private Block type;
+	private BMLBlock block;
 
-	public int getX() {
-		return x;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public void setY(int y) {
-		this.y = y;
-	}
-
-	public int getZ() {
-		return z;
-	}
-
-	public void setZ(int z) {
-		this.z = z;
-	}
-
-	public Block getType() {
-		return type;
-	}
-
-	public void setType(Block type) {
-		this.type = type;
+	public BMLBlock getBlock() {
+		return block;
 	}
 
 	@Override
 	public void Parse(String arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
