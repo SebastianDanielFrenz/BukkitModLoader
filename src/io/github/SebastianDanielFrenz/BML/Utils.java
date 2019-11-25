@@ -10,9 +10,10 @@ public class Utils {
 		return new Location(BMLPlugin.plugin.getServer().getWorld(split[0]), Integer.parseInt(split[1]),
 				Integer.parseInt(split[2]), Integer.parseInt(split[3]));
 	}
-	
+
 	public static String BlockLocationToString(Location location) {
-		return location.getWorld().toString();
+		return location.getWorld().getName() + ";" + location.getBlockX() + ";" + location.getBlockY() + ";"
+				+ location.getBlockZ();
 	}
 
 }

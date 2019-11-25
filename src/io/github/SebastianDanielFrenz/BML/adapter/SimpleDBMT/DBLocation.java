@@ -7,7 +7,15 @@ import io.github.SebastianDanielFrenz.SimpleDBMT.varTypes.DBCompareable;
 import io.github.SebastianDanielFrenz.SimpleDBMT.varTypes.DBvalue;
 
 public class DBLocation implements DBvalue {
-	
+
+	public DBLocation() {
+
+	}
+
+	public DBLocation(Location value) {
+		this.value = value;
+	}
+
 	private Location value;
 
 	@Override
@@ -17,18 +25,28 @@ public class DBLocation implements DBvalue {
 
 	@Override
 	public String Save() {
-		return Utils.
+		return Utils.BlockLocationToString(value);
 	}
 
 	@Override
 	public boolean Equals(DBCompareable arg0) {
-		return 
+		if (arg0 instanceof DBvalue) {
+			return ((DBvalue) arg0).Display().equals(Display());
+		}
+		return false;
 	}
 
 	@Override
 	public String Display() {
-		// TODO Auto-generated method stub
-		return null;
+		return Utils.BlockLocationToString(value);
+	}
+
+	public Location getValue() {
+		return value;
+	}
+
+	public void setValue(Location value) {
+		this.value = value;
 	}
 
 }
