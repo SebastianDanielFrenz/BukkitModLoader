@@ -2,9 +2,9 @@ package io.github.SebastianDanielFrenz.BML.core.game.event.block;
 
 import org.bukkit.block.Block;
 
-public abstract class BMLBlockPlaceEvent extends BMLBlockEvent {
+public class BMLPlayerBlockPlaceEvent extends BMLBlockPlaceEvent {
 
-	public BMLBlockPlaceEvent(Block block) {
+	public BMLPlayerBlockPlaceEvent(Block block) {
 		super(block);
 	}
 

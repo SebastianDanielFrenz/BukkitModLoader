@@ -1,6 +1,7 @@
 package io.github.SebastianDanielFrenz.BML.core.game;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.event.block.BlockBurnEvent;
 import org.bukkit.event.block.BlockCanBuildEvent;
 import org.bukkit.event.block.BlockDamageEvent;
@@ -26,18 +27,38 @@ import io.github.SebastianDanielFrenz.BML.core.game.event.block.BMLBlockPlaceEve
 /**
  * For an expination of the events, visit
  * <a href="https://jd.bukkit.org/org/bukkit/event/block/BlockEvent.html">this
- * bukkit doc</a>.
+ * bukkit doc</a>. <br>
+ * <br>
+ * In order for your custom block to work with the BMLEngine class, you will
+ * have to provide an empty constructor.
  * 
  * @since BML 0.0.1
  *
  */
 public abstract class BMLBlock {
 
+	public BMLBlock() {
+	}
+
+	public BMLBlock(Location location) {
+		this.location = location;
+	}
+
 	protected Location location;
 
 	public Location getLocation() {
 		return location;
 	}
+
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+
+	public void placeMCblock() {
+		location.getWorld().getBlockAt(location).setType(getMaterial());
+	}
+
+	public abstract Material getMaterial();
 
 	public abstract void BMLblockPlaceEvent(BMLBlockPlaceEvent event);
 

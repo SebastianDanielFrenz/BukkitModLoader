@@ -4,12 +4,14 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import io.github.SebastianDanielFrenz.BML.core.BMLEngine;
 import io.github.SebastianDanielFrenz.SimpleDBMT.DataBaseHandler;
 
 public class BMLPlugin extends JavaPlugin {
 
 	public static BMLPlugin plugin;
 	public static DataBaseHandler dbh;
+	public static BMLEngine engine;
 
 	@Override
 	public void onEnable() {
@@ -19,11 +21,13 @@ public class BMLPlugin extends JavaPlugin {
 
 			Bukkit.getPluginManager().disablePlugin(this);
 		}
+		
+		getLogger().info("Starting engine...");
+		engine = new BMLEngine();
 	}
 
 	@Override
 	public void onDisable() {
-
 	}
 
 	public boolean setupDB() {
