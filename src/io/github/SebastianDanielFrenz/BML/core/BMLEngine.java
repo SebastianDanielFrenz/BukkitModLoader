@@ -59,6 +59,8 @@ public class BMLEngine implements Listener, AutoSaveListener, PostAutoSaveListen
 
 	@EventHandler
 	public void bukkit_onBlockPlace(BlockPlaceEvent event) {
+		BMLPlugin.plugin.getLogger().info("placed block!");
+		
 		ItemStack itemStack = event.getItemInHand();
 		List<String> lore = itemStack.getItemMeta().getLore();
 		if (lore.size() != 0) {
