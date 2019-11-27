@@ -18,7 +18,6 @@ import org.bukkit.event.block.BlockRedstoneEvent;
 import org.bukkit.event.block.LeavesDecayEvent;
 import org.bukkit.event.block.NotePlayEvent;
 import org.bukkit.event.block.SignChangeEvent;
-import org.bukkit.event.inventory.BrewEvent;
 import org.bukkit.event.inventory.FurnaceBurnEvent;
 import org.bukkit.event.inventory.FurnaceExtractEvent;
 
@@ -96,8 +95,6 @@ public abstract class BMLBlock {
 	public abstract void MCblockPlaceEvent(BlockPlaceEvent event);
 
 	public abstract void MCblockRedstoneEvent(BlockRedstoneEvent event);
-
-	public abstract void MCbrewEvent(BrewEvent event);
 
 	public abstract void MCfurnaceBurnEvent(FurnaceBurnEvent event);
 

@@ -19,7 +19,6 @@ import org.bukkit.event.block.BlockRedstoneEvent;
 import org.bukkit.event.block.LeavesDecayEvent;
 import org.bukkit.event.block.NotePlayEvent;
 import org.bukkit.event.block.SignChangeEvent;
-import org.bukkit.event.inventory.BrewEvent;
 import org.bukkit.event.inventory.FurnaceBurnEvent;
 import org.bukkit.event.inventory.FurnaceExtractEvent;
 
@@ -27,9 +26,9 @@ import io.github.SebastianDanielFrenz.BML.core.game.BMLBlock;
 import io.github.SebastianDanielFrenz.BML.core.game.event.block.BMLBlockPlaceEvent;
 
 public class TestBlock extends BMLBlock {
-	
+
 	public TestBlock() {
-		
+
 	}
 
 	@Override
@@ -122,12 +121,6 @@ public class TestBlock extends BMLBlock {
 
 	@Override
 	public void MCblockRedstoneEvent(BlockRedstoneEvent event) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void MCbrewEvent(BrewEvent event) {
 		// TODO Auto-generated method stub
 
 	}

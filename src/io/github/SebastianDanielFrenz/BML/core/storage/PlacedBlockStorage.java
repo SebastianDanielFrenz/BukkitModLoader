@@ -38,8 +38,8 @@ public class PlacedBlockStorage {
 	}
 
 	public void storeInDB() {
-		BMLPlugin.plugin.dbh.getDataBase(db).createTable(table);
-		Table t = BMLPlugin.plugin.dbh.getDataBase(db).getTable(table);
+		BMLPlugin.dbh.getDataBase(db).createTable(table);
+		Table t = BMLPlugin.dbh.getDataBase(db).getTable(table);
 		t.addColumn("ID");
 		t.addColumn("location");
 		ArrayList<DBvalue> row;
@@ -53,7 +53,7 @@ public class PlacedBlockStorage {
 	}
 
 	public void clearDB() {
-		BMLPlugin.plugin.dbh.getDataBase(db).deleteTable(table);
+		BMLPlugin.dbh.getDataBase(db).deleteTable(table);
 	}
 
 }
