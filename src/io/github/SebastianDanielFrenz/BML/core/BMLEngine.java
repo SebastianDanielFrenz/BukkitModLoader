@@ -5,6 +5,7 @@ import java.util.List;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockBurnEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -60,7 +61,7 @@ public class BMLEngine implements Listener, AutoSaveListener, PostAutoSaveListen
 	@EventHandler
 	public void bukkit_onBlockPlace(BlockPlaceEvent event) {
 		BMLPlugin.plugin.getLogger().info("placed block!");
-		
+
 		ItemStack itemStack = event.getItemInHand();
 		List<String> lore = itemStack.getItemMeta().getLore();
 		if (lore.size() != 0) {
@@ -78,6 +79,16 @@ public class BMLEngine implements Listener, AutoSaveListener, PostAutoSaveListen
 				}
 
 				placeBlock(block, new BMLPlayerBlockPlaceEvent(event.getBlock()));
+			}
+		}
+	}
+
+	@EventHandler
+	public void bukkit_onBlockBurn(BlockBurnEvent event) {
+		BMLBlock block = placedBlockStorage.getBlockAt(event.getBlock().getLocation());
+		if (block != null) {
+			if (!event.isCancelled()) {
+				block.MCblockBurnEvent(event);
 			}
 		}
 	}

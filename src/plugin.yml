@@ -1,0 +1,9 @@
+main: io.github.SebastianDanielFrenz.BML.BMLPlugin
+name: BML
+version: alpha 1.0.0.0
+depend:
+- SimpleDBMT
+commands:
+  bml:
+    description: The main command for BML.
+    
