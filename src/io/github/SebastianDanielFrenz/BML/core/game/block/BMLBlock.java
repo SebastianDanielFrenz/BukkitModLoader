@@ -1,12 +1,12 @@
-package io.github.SebastianDanielFrenz.BML.core.game;
+package io.github.SebastianDanielFrenz.BML.core.game.block;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockBurnEvent;
 import org.bukkit.event.block.BlockCanBuildEvent;
 import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.block.BlockDispenseEvent;
-import org.bukkit.event.block.BlockExpEvent;
 import org.bukkit.event.block.BlockFadeEvent;
 import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.block.BlockGrowEvent;
@@ -22,6 +22,7 @@ import org.bukkit.event.inventory.FurnaceBurnEvent;
 import org.bukkit.event.inventory.FurnaceExtractEvent;
 
 import io.github.SebastianDanielFrenz.BML.core.game.event.block.BMLBlockPlaceEvent;
+import io.github.SebastianDanielFrenz.SimpleDBMT.varTypes.DBvalue;
 
 /**
  * For an expination of the events, visit
@@ -44,6 +45,16 @@ public abstract class BMLBlock {
 	}
 
 	protected Location location;
+
+	protected DBvalue data;
+
+	public DBvalue getData() {
+		return data;
+	}
+
+	public void setData(DBvalue data) {
+		this.data = data;
+	}
 
 	public Location getLocation() {
 		return location;
@@ -70,7 +81,7 @@ public abstract class BMLBlock {
 	public abstract void MCblockDispenseEvent(BlockDispenseEvent event);
 
 	// start BlockExpEvent
-	public abstract void MCblockBreakEvent(BlockExpEvent event);
+	public abstract void MCblockBreakEvent(BlockBreakEvent event);
 
 	public abstract void MCfurnaceExtractEvent(FurnaceExtractEvent event);
 

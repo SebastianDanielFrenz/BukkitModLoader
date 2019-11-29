@@ -20,7 +20,7 @@ import org.bukkit.event.block.BlockRedstoneEvent;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.SebastianDanielFrenz.BML.BMLPlugin;
-import io.github.SebastianDanielFrenz.BML.core.game.BMLBlock;
+import io.github.SebastianDanielFrenz.BML.core.game.block.BMLBlock;
 import io.github.SebastianDanielFrenz.BML.core.game.event.block.BMLBlockPlaceEvent;
 import io.github.SebastianDanielFrenz.BML.core.game.event.block.BMLPlayerBlockPlaceEvent;
 import io.github.SebastianDanielFrenz.BML.core.storage.PlacedBlockStorage;
@@ -34,6 +34,10 @@ public class BMLEngine implements Listener, AutoSaveListener, PostAutoSaveListen
 	}
 
 	private PlacedBlockStorage placedBlockStorage = new PlacedBlockStorage("BML", "placed_blocks");
+
+	public PlacedBlockStorage getPlacedBlockStorage() {
+		return placedBlockStorage;
+	}
 
 	public void placeBlock(BMLBlock block, BMLBlockPlaceEvent event) {
 		block.BMLblockPlaceEvent(event);

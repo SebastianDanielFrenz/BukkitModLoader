@@ -21,8 +21,13 @@ public class BMLPlugin extends JavaPlugin {
 
 			Bukkit.getPluginManager().disablePlugin(this);
 		}
-		
+
 		getLogger().info("Starting engine...");
+
+		if (dbh.getDataBase("BML") == null) {
+			dbh.createDataBase("BML", "BML.db");
+		}
+
 		engine = new BMLEngine();
 	}
 

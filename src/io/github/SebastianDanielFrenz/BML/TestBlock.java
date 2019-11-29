@@ -3,11 +3,11 @@ package io.github.SebastianDanielFrenz.BML;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockBurnEvent;
 import org.bukkit.event.block.BlockCanBuildEvent;
 import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.block.BlockDispenseEvent;
-import org.bukkit.event.block.BlockExpEvent;
 import org.bukkit.event.block.BlockFadeEvent;
 import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.block.BlockGrowEvent;
@@ -22,7 +22,7 @@ import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.event.inventory.FurnaceBurnEvent;
 import org.bukkit.event.inventory.FurnaceExtractEvent;
 
-import io.github.SebastianDanielFrenz.BML.core.game.BMLBlock;
+import io.github.SebastianDanielFrenz.BML.core.game.block.BMLBlock;
 import io.github.SebastianDanielFrenz.BML.core.game.event.block.BMLBlockPlaceEvent;
 
 public class TestBlock extends BMLBlock {
@@ -61,12 +61,6 @@ public class TestBlock extends BMLBlock {
 
 	@Override
 	public void MCblockDispenseEvent(BlockDispenseEvent event) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void MCblockBreakEvent(BlockExpEvent event) {
 		// TODO Auto-generated method stub
 
 	}
@@ -145,6 +139,12 @@ public class TestBlock extends BMLBlock {
 
 	@Override
 	public void MCsignChangeEvent(SignChangeEvent event) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void MCblockBreakEvent(BlockBreakEvent event) {
 		// TODO Auto-generated method stub
 
 	}
