@@ -2,6 +2,7 @@ package io.github.SebastianDanielFrenz.BML.core.game.block;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockBurnEvent;
 import org.bukkit.event.block.BlockCanBuildEvent;
@@ -64,6 +65,10 @@ public abstract class BMLBlock {
 		this.location = location;
 	}
 
+	public Block getMCblock() {
+		return location.getBlock();
+	}
+
 	public void placeMCblock() {
 		location.getWorld().getBlockAt(location).setType(getMaterial());
 	}
@@ -114,4 +119,6 @@ public abstract class BMLBlock {
 	public abstract void MCnotePlayEvent(NotePlayEvent event);
 
 	public abstract void MCsignChangeEvent(SignChangeEvent event);
+
+	public abstract void gameTickEvent();
 }
