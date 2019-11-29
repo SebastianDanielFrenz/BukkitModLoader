@@ -18,6 +18,7 @@ import org.bukkit.event.block.BlockPistonEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.block.BlockRedstoneEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.ServicePriority;
 
 import io.github.SebastianDanielFrenz.BML.BMLPlugin;
 import io.github.SebastianDanielFrenz.BML.core.game.block.BMLBlock;
@@ -26,11 +27,17 @@ import io.github.SebastianDanielFrenz.BML.core.game.event.block.BMLPlayerBlockPl
 import io.github.SebastianDanielFrenz.BML.core.storage.PlacedBlockStorage;
 import io.github.SebastianDanielFrenz.SimpleDBMT.adapter.AutoSaveListener;
 import io.github.SebastianDanielFrenz.SimpleDBMT.adapter.PostAutoSaveListener;
+import io.github.SebastianDanielFrenz.SimpleDBMT.adapter.SimpleDBMT2BukkitAdapter;
 
 public class BMLEngine implements Listener, AutoSaveListener, PostAutoSaveListener {
 
 	public BMLEngine() {
+		BMLPlugin.plugin.getServer().getServicesManager().register(BMLEngine.class, this, BMLPlugin.plugin,
+				ServicePriority.Normal);
 		BMLPlugin.plugin.getServer().getPluginManager().registerEvents(this, BMLPlugin.plugin);
+
+		SimpleDBMT2BukkitAdapter.registerAutoSaveListener(this);
+		SimpleDBMT2BukkitAdapter.registerPostAutoSaveListener(this);
 	}
 
 	private PlacedBlockStorage placedBlockStorage = new PlacedBlockStorage("BML", "placed_blocks");
@@ -87,6 +94,7 @@ public class BMLEngine implements Listener, AutoSaveListener, PostAutoSaveListen
 				try {
 					block = (BMLBlock) Class.forName(ID).newInstance();
 					block.setLocation(event.getBlock().getLocation());
+					System.out.println("placed " + ID);
 				} catch (Exception e) {
 					e.printStackTrace();
 					return;
@@ -105,77 +113,52 @@ public class BMLEngine implements Listener, AutoSaveListener, PostAutoSaveListen
 		}
 	}
 
-	@EventHandler
-	public void bukkit_onBlockCanBuild(BlockCanBuildEvent event) {
-		BMLBlock block = placedBlockStorage.getBlockAt(event.getBlock().getLocation());
-		if (block != null) {
-			block.MCblockCanBuildEvent(event);
-		}
-	}
-
-	@EventHandler
-	public void bukkit_onBlockDamage(BlockDamageEvent event) {
-		BMLBlock block = placedBlockStorage.getBlockAt(event.getBlock().getLocation());
-		if (block != null) {
-			block.MCblockDamageEvent(event);
-		}
-	}
-
-	@EventHandler
-	public void bukkit_onBlockDispense(BlockDispenseEvent event) {
-		BMLBlock block = placedBlockStorage.getBlockAt(event.getBlock().getLocation());
-		if (block != null) {
-			block.MCblockDispenseEvent(event);
-		}
-	}
-
-	@EventHandler
-	public void bukkit_onBlockFade(BlockFadeEvent event) {
-		BMLBlock block = placedBlockStorage.getBlockAt(event.getBlock().getLocation());
-		if (block != null) {
-			block.MCblockFadeEvent(event);
-		}
-	}
-
-	@EventHandler
-	public void bukkit_onBlockFromTo(BlockFromToEvent event) {
-		BMLBlock block = placedBlockStorage.getBlockAt(event.getBlock().getLocation());
-		if (block != null) {
-			block.MCblockFromToEvent(event);
-		}
-	}
-
-	@EventHandler
-	public void bukkit_onBlockGrow(BlockGrowEvent event) {
-		BMLBlock block = placedBlockStorage.getBlockAt(event.getBlock().getLocation());
-		if (block != null) {
-			block.MCblockGrowEvent(event);
-		}
-	}
-
-	@EventHandler
-	public void bukkit_onBlockIgnite(BlockIgniteEvent event) {
-		BMLBlock block = placedBlockStorage.getBlockAt(event.getBlock().getLocation());
-		if (block != null) {
-			block.MCblockIgniteEvent(event);
-		}
-	}
-
-	@EventHandler
-	public void bukkit_onBlockPhysics(BlockPhysicsEvent event) {
-		BMLBlock block = placedBlockStorage.getBlockAt(event.getBlock().getLocation());
-		if (block != null) {
-			block.MCblockPhysicsEvent(event);
-		}
-	}
-
-	@EventHandler
-	public void bukkit_onBlockPiston(BlockPistonEvent event) {
-		BMLBlock block = placedBlockStorage.getBlockAt(event.getBlock().getLocation());
-		if (block != null) {
-			block.MCblockPistonEvent(event);
-		}
-	}
+	/*
+	 * @EventHandler public void bukkit_onBlockCanBuild(BlockCanBuildEvent
+	 * event) { BMLBlock block =
+	 * placedBlockStorage.getBlockAt(event.getBlock().getLocation()); if (block
+	 * != null) { block.MCblockCanBuildEvent(event); } }
+	 * 
+	 * @EventHandler public void bukkit_onBlockDamage(BlockDamageEvent event) {
+	 * BMLBlock block =
+	 * placedBlockStorage.getBlockAt(event.getBlock().getLocation()); if (block
+	 * != null) { block.MCblockDamageEvent(event); } }
+	 * 
+	 * @EventHandler public void bukkit_onBlockDispense(BlockDispenseEvent
+	 * event) { BMLBlock block =
+	 * placedBlockStorage.getBlockAt(event.getBlock().getLocation()); if (block
+	 * != null) { block.MCblockDispenseEvent(event); } }
+	 * 
+	 * @EventHandler public void bukkit_onBlockFade(BlockFadeEvent event) {
+	 * BMLBlock block =
+	 * placedBlockStorage.getBlockAt(event.getBlock().getLocation()); if (block
+	 * != null) { block.MCblockFadeEvent(event); } }
+	 * 
+	 * @EventHandler public void bukkit_onBlockFromTo(BlockFromToEvent event) {
+	 * BMLBlock block =
+	 * placedBlockStorage.getBlockAt(event.getBlock().getLocation()); if (block
+	 * != null) { block.MCblockFromToEvent(event); } }
+	 * 
+	 * @EventHandler public void bukkit_onBlockGrow(BlockGrowEvent event) {
+	 * BMLBlock block =
+	 * placedBlockStorage.getBlockAt(event.getBlock().getLocation()); if (block
+	 * != null) { block.MCblockGrowEvent(event); } }
+	 * 
+	 * @EventHandler public void bukkit_onBlockIgnite(BlockIgniteEvent event) {
+	 * BMLBlock block =
+	 * placedBlockStorage.getBlockAt(event.getBlock().getLocation()); if (block
+	 * != null) { block.MCblockIgniteEvent(event); } }
+	 * 
+	 * @EventHandler public void bukkit_onBlockPhysics(BlockPhysicsEvent event)
+	 * { BMLBlock block =
+	 * placedBlockStorage.getBlockAt(event.getBlock().getLocation()); if (block
+	 * != null) { block.MCblockPhysicsEvent(event); } }
+	 * 
+	 * @EventHandler public void bukkit_onBlockPiston(BlockPistonEvent event) {
+	 * BMLBlock block =
+	 * placedBlockStorage.getBlockAt(event.getBlock().getLocation()); if (block
+	 * != null) { block.MCblockPistonEvent(event); } }
+	 */
 
 	@EventHandler
 	public void bukkit_onBlockRedstone(BlockRedstoneEvent event) {

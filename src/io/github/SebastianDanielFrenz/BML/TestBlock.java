@@ -149,4 +149,10 @@ public class TestBlock extends BMLBlock {
 
 	}
 
+	@Override
+	public void gameTickEvent() {
+		// TODO Auto-generated method stub
+
+	}
+
 }

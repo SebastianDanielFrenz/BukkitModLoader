@@ -1,5 +1,7 @@
 package io.github.SebastianDanielFrenz.BML;
 
+import java.io.IOException;
+
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -24,8 +26,11 @@ public class BMLPlugin extends JavaPlugin {
 
 		getLogger().info("Starting engine...");
 
-		if (dbh.getDataBase("BML") == null) {
+		try {
+			dbh.addDataBase("BML.db");
+		} catch (IOException e) {
 			dbh.createDataBase("BML", "BML.db");
+			dbh.getDataBase("BML").createTable("placed_blocks");
 		}
 
 		engine = new BMLEngine();
