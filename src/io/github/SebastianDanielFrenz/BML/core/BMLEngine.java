@@ -24,6 +24,7 @@ import io.github.SebastianDanielFrenz.BML.BMLPlugin;
 import io.github.SebastianDanielFrenz.BML.core.game.block.BMLBlock;
 import io.github.SebastianDanielFrenz.BML.core.game.event.block.BMLBlockPlaceEvent;
 import io.github.SebastianDanielFrenz.BML.core.game.event.block.BMLPlayerBlockPlaceEvent;
+import io.github.SebastianDanielFrenz.BML.core.registry.BlockRegistry;
 import io.github.SebastianDanielFrenz.BML.core.storage.PlacedBlockStorage;
 import io.github.SebastianDanielFrenz.SimpleDBMT.adapter.AutoSaveListener;
 import io.github.SebastianDanielFrenz.SimpleDBMT.adapter.PostAutoSaveListener;
@@ -41,9 +42,14 @@ public class BMLEngine implements Listener, AutoSaveListener, PostAutoSaveListen
 	}
 
 	private PlacedBlockStorage placedBlockStorage = new PlacedBlockStorage("BML", "placed_blocks");
+	private BlockRegistry blockRegistry = new BlockRegistry();
 
 	public PlacedBlockStorage getPlacedBlockStorage() {
 		return placedBlockStorage;
+	}
+
+	public BlockRegistry getBlockRegistry() {
+		return blockRegistry;
 	}
 
 	public void placeBlock(BMLBlock block, BMLBlockPlaceEvent event) {
@@ -113,12 +119,14 @@ public class BMLEngine implements Listener, AutoSaveListener, PostAutoSaveListen
 		}
 	}
 
+	@EventHandler
+	public void bukkit_onBlockCanBuild(BlockCanBuildEvent event) {
+		BMLBlock block = placedBlockStorage.getBlockAt(event.getBlock().getLocation());
+		if (block != null) {
+			block.MCblockCanBuildEvent(event);
+		}
+	}
 	/*
-	 * @EventHandler public void bukkit_onBlockCanBuild(BlockCanBuildEvent
-	 * event) { BMLBlock block =
-	 * placedBlockStorage.getBlockAt(event.getBlock().getLocation()); if (block
-	 * != null) { block.MCblockCanBuildEvent(event); } }
-	 * 
 	 * @EventHandler public void bukkit_onBlockDamage(BlockDamageEvent event) {
 	 * BMLBlock block =
 	 * placedBlockStorage.getBlockAt(event.getBlock().getLocation()); if (block
